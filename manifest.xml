@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:type="MailApp">
+  <Id>00000000-0000-0000-0000-000000000001</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Your Company</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Be Kind, Optional By Default"/>
+  <Description DefaultValue="Convert all meeting attendees to Optional. Invite lightly and respect others' time."/>
+  <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
+  <SupportUrl DefaultValue="https://yourcompany.example.com/support"/>
+  <Hosts>
+    <Host Name="Outlook"/>
+  </Hosts>
+  <Requirements>
+    <Sets DefaultMinVersion="1.5">
+      <Set Name="Mailbox"/>
+    </Sets>
+  </Requirements>
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
+      </DesktopSettings>
+    </Form>
+    <Form xsi:type="ItemEdit">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+  <Permissions>ReadWriteItem</Permissions>
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Appointment" FormType="Edit"/>
+  </Rule>
+  <ExtensionPoint xsi:type="MessageReadCommandSurface">
+    <OfficeTab id="TabDefault">
+      <Group id="msgReadGroup">
+        <Label resid="groupLabel"/>
+        <Control xsi:type="Button" id="markOptionalButton">
+          <Label resid="buttonLabel"/>
+          <Supertip>
+            <Title resid="buttonLabel"/>
+            <Description resid="buttonTooltip"/>
+          </Supertip>
+          <Icon>
+            <bt:Image size="16" resid="icon16"/>
+            <bt:Image size="32" resid="icon32"/>
+            <bt:Image size="80" resid="icon80"/>
+          </Icon>
+          <Action xsi:type="ShowTaskpane">
+            <SourceLocation resid="taskpaneUrl"/>
+          </Action>
+        </Control>
+      </Group>
+    </OfficeTab>
+  </ExtensionPoint>
+  <Resources>
+    <bt:Images>
+      <bt:Image id="icon16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
+      <bt:Image id="icon32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
+      <bt:Image id="icon80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
+    </bt:Images>
+    <bt:Urls>
+      <bt:Url id="taskpaneUrl" DefaultValue="https://localhost:3000/taskpane.html"/>
+    </bt:Urls>
+    <bt:ShortStrings>
+      <bt:String id="groupLabel" DefaultValue="Meeting Tools"/>
+      <bt:String id="buttonLabel" DefaultValue="Be Kind, Optional By Default"/>
+    </bt:ShortStrings>
+    <bt:LongStrings>
+      <bt:String id="buttonTooltip" DefaultValue="If your meeting is THAT important, they'll accept. Invite lightly and respect other's time with Optional By Default."/>
+    </bt:LongStrings>
+  </Resources>
+</OfficeApp>
